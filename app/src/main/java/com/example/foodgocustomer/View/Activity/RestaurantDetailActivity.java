@@ -1,4 +1,4 @@
-package com.example.foodgocustomer.View;
+package com.example.foodgocustomer.View.Activity;
 
 import android.os.Bundle;
 
@@ -10,13 +10,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.foodgocustomer.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class RestaurantDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_restaurant_detail);
 
     }
 }

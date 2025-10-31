@@ -1,19 +1,19 @@
-package com.example.foodgocustomer.View;
+package com.example.foodgocustomer.View.Activity;
 
 import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodgocustomer.R;
 
-public class MainActivity extends AppCompatActivity {
-
-    // banner , logo
-
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_register);
 
     }
 }

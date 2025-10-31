@@ -1,4 +1,4 @@
-package com.example.foodgocustomer.View;
+package com.example.foodgocustomer.View.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.foodgocustomer.R;
+import com.example.foodgocustomer.View.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -25,7 +26,6 @@ public class SplashActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash);
 
-        // Tham chiếu tới logo trong layout
         logoImage = findViewById(R.id.logoImage);
 
 

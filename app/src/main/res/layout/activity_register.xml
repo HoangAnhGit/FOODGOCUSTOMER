@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.RegisterActivity"
+    tools:context=".View.Activity.RegisterActivity"
     android:background="@drawable/bg_gradient_top_to_bottom">
 
 
@@ -68,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
+            android:autofillHints=""
             android:hint="@string/name"
             android:background="@drawable/bg_input_login"
             android:paddingHorizontal="12dp"
@@ -79,6 +80,7 @@
             android:id="@+id/edt_phone"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:autofillHints=""
             android:hint="@string/phone"
             android:background="@drawable/bg_input_login"
             android:paddingHorizontal="12dp"
@@ -90,6 +92,7 @@
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:autofillHints=""
             android:hint="@string/password"
             android:background="@drawable/bg_input_login"
             android:paddingHorizontal="12dp"
@@ -101,11 +104,12 @@
             android:id="@+id/edt_password_again"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:autofillHints=""
             android:hint="@string/password_again"
             android:background="@drawable/bg_input_login"
             android:paddingHorizontal="12dp"
             android:textSize="14sp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="32dp"
             android:inputType="textPassword" />
 
         <!--error-->
@@ -114,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="@string/register"
-            android:backgroundTint="@drawable/bg_button"
+            android:backgroundTint="@color/colorPrimary"
             android:textColor="@android:color/white"
             android:background="@drawable/bg_button"
             android:textStyle="bold" />
