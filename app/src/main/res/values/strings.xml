@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">FOODGOCUSTOMER</string>
+    <string name="app_name">FoodGo</string>
+    <string name="welcome">Chào mừng bạn !</string>
+    <string name="information_login">Thông tin tài khoản</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="name">Họ và tên</string>
+    <string name="password">Mật khẩu</string>
+    <string name="password_again">Nhập lại mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="register">Đăng kí</string>
 </resources>
