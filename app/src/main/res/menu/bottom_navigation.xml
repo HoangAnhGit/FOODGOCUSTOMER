@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/nav_food"
-        android:icon="@drawable/ic_food"
+        android:icon="@drawable/index"
         android:title="Món ăn" />
 
     <item
         android:id="@+id/nav_orders"
-        android:icon="@drawable/ic_orders"
+        android:icon="@drawable/hisotry"
         android:title="Đơn hàng" />
 
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/profile"
         android:title="Tài khoản" />
 
 </menu>

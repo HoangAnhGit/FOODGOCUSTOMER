@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:orientation="horizontal"
+    android:background="#F2F2F2"
+    android:padding="8dp"
+    android:gravity="center_vertical"
+    android:clipToOutline="true"
+    android:layout_marginBottom="8dp"
+    android:layout_marginHorizontal="4dp"
+    android:backgroundTintMode="src_over"
+    android:backgroundTint="#F0F0F0"
+    android:elevation="2dp">
+
+
+        <ImageView
+            android:id="@+id/img_item"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avartar"
+            android:layout_marginEnd="8dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bún bò huế"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_item_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Không ăn rau , hành"
+                android:textColor="#555555"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/tv_item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="50.000đ"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btn_minus"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:backgroundTint="#E0F0F2"
+                android:src="@drawable/minus"
+                android:contentDescription="Giảm" />
+
+            <TextView
+                android:id="@+id/tv_quantity"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/btn_plus"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:backgroundTint="#E0F0F2"
+                android:src="@drawable/plus"
+                android:contentDescription="Tăng" />
+        </LinearLayout>
+    </LinearLayout>
+

@@ -61,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
             android:text="@string/information_login"/>
 
 
@@ -92,11 +93,13 @@
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/login"
-            android:backgroundTint="@drawable/bg_button"
+            android:layout_height="wrap_content"
+            android:text="Đăng nhập"
+            android:textAllCaps="false"
             android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
+            android:backgroundTint="@color/colorPrimary"
+            android:paddingVertical="16dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 

@@ -18,4 +18,8 @@
     <color name="itemTurquoise">#C2E2DF</color>
     <color name="itemOrange">#FCE6BD</color>
 
+
+    <color name="green_success">#2ECC71</color>
+    <color name="red_danger">#E74C3C</color>
+
 </resources>
