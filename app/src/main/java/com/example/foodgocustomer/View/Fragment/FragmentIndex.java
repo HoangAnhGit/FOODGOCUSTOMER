@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.foodgocustomer.R;
 import com.example.foodgocustomer.View.Adapter.BannerAdapter;
+import com.example.foodgocustomer.databinding.FragmentIndexBinding;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,11 +23,12 @@ public class FragmentIndex extends Fragment {
     private ViewPager2 bannerViewPager;
     private Handler handler = new Handler();
     private int currentPage = 0;
+    private FragmentIndexBinding binding;
 
     private final List<Integer> bannerImages = Arrays.asList(
-//            R.drawable.banner1,
-//            R.drawable.banner2,
-//            R.drawable.banner3
+           R.drawable.banner1,
+            R.drawable.banner2,
+            R.drawable.banner3
     );
 
     private final Runnable bannerRunnable = new Runnable() {
@@ -45,18 +47,22 @@ public class FragmentIndex extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        // Inflate layout
-        View view = inflater.inflate(R.layout.fragment_index, container, false);
+        binding = FragmentIndexBinding.inflate(inflater,container,false);
+        View view = binding.getRoot();
 
+        startViewPager();
+
+        return view;
+    }
+
+    private void startViewPager(){
         // Khởi tạo ViewPager
-        bannerViewPager = view.findViewById(R.id.bannerViewPager);
+        bannerViewPager = binding.bannerViewPager;
         BannerAdapter adapter = new BannerAdapter(this.getContext(), bannerImages);
         bannerViewPager.setAdapter(adapter);
 
         // Bắt đầu auto slide
         handler.postDelayed(bannerRunnable, 3000);
-
-        return view;
     }
 
     @Override

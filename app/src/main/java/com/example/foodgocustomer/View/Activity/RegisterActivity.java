@@ -13,12 +13,12 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodgocustomer.Model.RegisterRequest;
-import com.example.foodgocustomer.Model.ApiResponse;
+import com.example.foodgocustomer.network.DTO.RegisterRequest;
+import com.example.foodgocustomer.network.DTO.ApiResponse;
 import com.example.foodgocustomer.R;
 import com.example.foodgocustomer.databinding.ActivityRegisterBinding;
 import com.example.foodgocustomer.network.ApiClient;
-import com.example.foodgocustomer.network.FoodApi;
+import com.example.foodgocustomer.network.API.LoginApi;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         // Gửi request
         RegisterRequest request = new RegisterRequest(phone, password, confirm, fullName, email);
 
-        FoodApi apiService = ApiClient.getClient().create(FoodApi.class);
+        LoginApi apiService = ApiClient.getClient().create(LoginApi.class);
         apiService.registerCustomer(request).enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

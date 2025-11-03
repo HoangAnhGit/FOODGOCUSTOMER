@@ -28,7 +28,7 @@
                 android:layout_height="36dp"
                 android:layout_marginTop="8dp"
                 android:padding="8dp"
-                android:contentDescription="Giỏ hàng"
+                android:contentDescription="@string/cart"
                 android:src="@drawable/cart_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giao đến"
+                android:text="@string/delivered_to"
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 android:alpha="0.8"
@@ -53,7 +53,7 @@
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="146 Trần Phú, Mỗ Lao, Hà Đông"
+                android:text="@string/address_demo"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -65,28 +65,47 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/searchCard"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_marginTop="16dp"
                 app:cardCornerRadius="28dp"
-                app:cardElevation="4dp"
+                app:cardElevation="6dp"
+                android:foreground="?attr/selectableItemBackground"
                 app:layout_constraintTop_toBottomOf="@id/tv_address"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <EditText
-                    android:id="@+id/edt_search"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@android:color/transparent"
-                    android:drawableStart="@drawable/search"
-                    android:drawablePadding="10dp"
-                    android:hint="Tìm món ăn, nhà hàng..."
-                    android:paddingHorizontal="16dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="#88000000"
-                    android:inputType="text"
-                    android:singleLine="true" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/search"
+                        android:contentDescription="@string/search_icon" />
+
+                    <EditText
+                        android:id="@+id/edt_search"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:autofillHints=""
+                        android:background="@android:color/transparent"
+                        android:hint="@string/search_hint"
+                        android:paddingVertical="8dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#88000000"
+                        android:textSize="15sp"
+                        android:inputType="text"
+                        android:singleLine="true" />
+                </LinearLayout>
+
             </androidx.cardview.widget.CardView>
+
 
             <!-- Banner -->
             <androidx.cardview.widget.CardView
@@ -117,7 +136,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:text="Danh mục món ăn"
+            style="@style/TextAppearance.FoodGo.BodyLarge"
+            android:text="@string/list_food"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -136,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:text="Quán nổi bật gần bạn"
+            android:text="@string/restaurant_highlight"
             android:textColor="@color/black"
             android:textSize="17sp"
             android:textStyle="bold" />

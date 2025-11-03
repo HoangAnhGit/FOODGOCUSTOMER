@@ -25,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Nhà hàng Gà Rán ABC "
+                android:text="@string/name_restaurant_demo_text"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="@android:color/black" />
@@ -34,7 +34,7 @@
                 android:id="@+id/tvOrderStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đang lấy giao"
+                android:text="@string/status_demo"
                 android:padding="4dp"
                 android:background="@drawable/bg_button"
                 android:textColor="@color/white"
@@ -53,7 +53,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="01/11/2025 - 18:30"
+                android:text="@string/date_demo"
                 android:textColor="@color/colorGrayText"
                 android:textSize="13sp" />
 
@@ -61,7 +61,7 @@
                 android:id="@+id/tvTotalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="120.000đ"
+                android:text="@string/total_money"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>
@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="2x Gà rán, 1x Pepsi, 1x Khoai tây chiên"
+            android:text="@string/list_order"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 

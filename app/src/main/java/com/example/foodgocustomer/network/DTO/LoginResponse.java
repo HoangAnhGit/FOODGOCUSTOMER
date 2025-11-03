@@ -1,4 +1,4 @@
-package com.example.foodgocustomer.Model;
+package com.example.foodgocustomer.network.DTO;
 
 public class LoginResponse {
     private String token;

@@ -20,5 +20,18 @@
     <string name="second_fragment_label">test</string>
     <string name="first_fragment_label">test</string>
 
+    <string name="cart">Giỏ hàng</string>
+    <string name="address_demo">146 Trần Phú, Mỗ Lao, Hà Đông</string>
+    <string name="search_hint">Tìm món ăn, nhà hàng...</string>
+    <string name="delivered_to">Giao đến</string>
+    <string name="list_food">Danh mục món ăn</string>
+    <string name="restaurant_highlight">Quán nổi bật gần bạn</string>
+    <string name="search_icon">Search icon</string>
+    <string name="name_restaurant_demo_text">Nhà hàng Gà Rán ABC</string>
+    <string name="status_demo">Đang lấy giao</string>
+    <string name="date_demo">01/11/2025 - 18:30</string>
+    <string name="total_money">120.000đ</string>
+    <string name="list_order">2x Gà rán, 1x Pepsi, 1x Khoai tây chiên</string>
+
 
 </resources>

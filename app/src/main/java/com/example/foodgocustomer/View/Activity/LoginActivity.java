@@ -16,10 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodgocustomer.R;
 import com.example.foodgocustomer.View.MainActivity;
 import com.example.foodgocustomer.databinding.ActivityLoginBinding;
-import com.example.foodgocustomer.Model.LoginRequest;
-import com.example.foodgocustomer.Model.LoginResponse;
+import com.example.foodgocustomer.network.DTO.LoginRequest;
+import com.example.foodgocustomer.network.DTO.LoginResponse;
 import com.example.foodgocustomer.network.ApiClient;
-import com.example.foodgocustomer.network.FoodApi;
+import com.example.foodgocustomer.network.API.LoginApi;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     //TODO: xử lý lưu session
 
     private ActivityLoginBinding binding;
-    private FoodApi foodApi;
+    private LoginApi foodApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        foodApi = ApiClient.getClient().create(FoodApi.class);
+        foodApi = ApiClient.getClient().create(LoginApi.class);
 
         binding.tvRegisterNow.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
