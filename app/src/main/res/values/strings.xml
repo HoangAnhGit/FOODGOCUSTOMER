@@ -3,6 +3,7 @@
     <string name="welcome">Chào mừng bạn !</string>
     <string name="information_login">Thông tin tài khoản</string>
     <string name="phone">Số điện thoại</string>
+    <string name="email">Email</string>
     <string name="name">Họ và tên</string>
     <string name="password">Mật khẩu</string>
     <string name="password_again">Nhập lại mật khẩu</string>

@@ -1,5 +1,6 @@
 package com.example.foodgocustomer.network;
 
+import com.example.foodgocustomer.Model.ApiResponse;
 import com.example.foodgocustomer.Model.LoginRequest;
 import com.example.foodgocustomer.Model.LoginResponse;
 import com.example.foodgocustomer.Model.RegisterRequest;
@@ -7,13 +8,14 @@ import com.example.foodgocustomer.Model.RegisterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
-public interface Api {
+public interface FoodApi {
 
     // Đăng ký khách hàng
     @POST("/api/Auth/register/customer")
-    Call<RegisterResponse> register(@Body RegisterRequest body);
+    Call<ApiResponse> registerCustomer(@Body RegisterRequest request);
 
 
     // Đăng nhập

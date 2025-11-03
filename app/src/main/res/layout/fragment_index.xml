@@ -128,8 +128,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:layout_marginTop="8dp"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_category_food" />
+            android:nestedScrollingEnabled="false" />
 
         <!-- Gợi ý quán -->
         <TextView
@@ -148,7 +147,6 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:layout_marginTop="8dp"
-            android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/item_restaurant" />
+            android:nestedScrollingEnabled="false" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

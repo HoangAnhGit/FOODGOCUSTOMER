@@ -47,9 +47,29 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
     // OkHttp logging
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+
+        // Retrofit core (phiên bản mới nhất)
+        implementation("com.squareup.retrofit2:retrofit:2.11.0")
+
+        // Converter cho JSON (Gson)
+        implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+        // OkHttp (client cho Retrofit)
+        implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.14")
+
+        // Logging Interceptor để debug API
+        implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.14")
+
+        // Gson (nếu cần parse JSON thủ công)
+        implementation("com.google.code.gson:gson:2.11.0")
+
+        // AndroidX cơ bản
+        implementation("androidx.appcompat:appcompat:1.7.0")
+        implementation("androidx.constraintlayout:constraintlayout:2.2.0")
+    
+
 }

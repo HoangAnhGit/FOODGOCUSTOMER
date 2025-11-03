@@ -1,13 +1,17 @@
 package com.example.foodgocustomer.Model;
 
 public class RegisterRequest {
-    public String fullName;
-    public String phone;
-    public String password;
+    private String phoneNumber;
+    private String password;
+    private String confirmPassword;
+    private String fullName;
+    private String email;
 
-    public RegisterRequest(String fullName, String phone, String password) {
-        this.fullName = fullName;
-        this.phone = phone;
+    public RegisterRequest(String phoneNumber, String password, String confirmPassword, String fullName, String email) {
+        this.phoneNumber = phoneNumber;
         this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.fullName = fullName;
+        this.email = email;
     }
 }
