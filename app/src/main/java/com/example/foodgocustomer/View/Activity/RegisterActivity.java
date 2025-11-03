@@ -2,15 +2,20 @@ package com.example.foodgocustomer.View.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodgocustomer.Model.RegisterRequest;
 import com.example.foodgocustomer.Model.ApiResponse;
+import com.example.foodgocustomer.R;
 import com.example.foodgocustomer.databinding.ActivityRegisterBinding;
 import com.example.foodgocustomer.network.ApiClient;
 import com.example.foodgocustomer.network.FoodApi;
@@ -30,24 +35,25 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 👉 Chuyển sang màn hình Login
         binding.tvRegisterNow.setOnClickListener(view -> {
             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             finish();
         });
 
-        // 👉 Xử lý nút Đăng ký
+        setupInputFocusEffect();
         binding.btnRegister.setOnClickListener(v -> registerUser());
     }
 
     private void registerUser() {
+
+        clearFocusAndHideKeyboard();
+
         String fullName = binding.edtName.getText().toString().trim();
         String phone = binding.edtPhone.getText().toString().trim();
         String email = binding.edtEmail.getText().toString().trim();
         String password = binding.edtPassword.getText().toString().trim();
         String confirm = binding.edtPasswordAgain.getText().toString().trim();
 
-        // Kiểm tra rỗng
         if (fullName.isEmpty() || phone.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             return;
@@ -55,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         showLoading(true);
 
-        // Kiểm tra mật khẩu trùng khớp
         if (!password.equals(confirm)) {
             Toast.makeText(this, "Mật khẩu nhập lại không khớp!", Toast.LENGTH_SHORT).show();
             return;
@@ -85,7 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<ApiResponse> call, @NonNull Throwable t) {
                 showLoading(false);
                 Toast.makeText(RegisterActivity.this, "Không thể kết nối máy chủ: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -97,6 +102,59 @@ public class RegisterActivity extends AppCompatActivity {
             binding.includeLoading.getRoot().setVisibility(View.VISIBLE);
         } else {
             binding.includeLoading.getRoot().setVisibility(View.GONE);
+        }
+    }
+
+    private void setupInputFocusEffect() {
+        View.OnFocusChangeListener focusListener = (v, hasFocus) -> {
+            if (hasFocus) {
+                v.setBackgroundResource(R.drawable.bg_input_focused);
+            } else {
+                v.setBackgroundResource(R.drawable.bg_input_login);
+            }
+        };
+
+        binding.edtName.setOnFocusChangeListener(focusListener);
+        binding.edtPhone.setOnFocusChangeListener(focusListener);
+        binding.edtEmail.setOnFocusChangeListener(focusListener);
+        binding.edtPassword.setOnFocusChangeListener(focusListener);
+        binding.edtPasswordAgain.setOnFocusChangeListener(focusListener);
+
+        TextWatcher clearErrorWatcher = new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.edtName.setError(null);
+                binding.edtPhone.setError(null);
+                binding.edtEmail.setError(null);
+                binding.edtPassword.setError(null);
+                binding.edtPasswordAgain.setError(null);
+            }
+        };
+
+        binding.edtName.addTextChangedListener(clearErrorWatcher);
+        binding.edtPhone.addTextChangedListener(clearErrorWatcher);
+        binding.edtEmail.addTextChangedListener(clearErrorWatcher);
+        binding.edtPassword.addTextChangedListener(clearErrorWatcher);
+        binding.edtPasswordAgain.addTextChangedListener(clearErrorWatcher);
+    }
+
+    private void clearFocusAndHideKeyboard() {
+        binding.edtPhone.clearFocus();
+        binding.edtPassword.clearFocus();
+        binding.edtName.clearFocus();
+        binding.edtPasswordAgain.clearFocus();
+        binding.edtEmail.clearFocus();
+
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 }
