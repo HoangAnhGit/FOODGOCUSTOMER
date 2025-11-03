@@ -3,6 +3,7 @@ package com.example.foodgocustomer.View.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -52,6 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        showLoading(true);
+
         // Kiểm tra mật khẩu trùng khớp
         if (!password.equals(confirm)) {
             Toast.makeText(this, "Mật khẩu nhập lại không khớp!", Toast.LENGTH_SHORT).show();
@@ -83,8 +86,17 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
+                showLoading(false);
                 Toast.makeText(RegisterActivity.this, "Không thể kết nối máy chủ: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void showLoading(boolean isLoading) {
+        if (isLoading) {
+            binding.includeLoading.getRoot().setVisibility(View.VISIBLE);
+        } else {
+            binding.includeLoading.getRoot().setVisibility(View.GONE);
+        }
     }
 }

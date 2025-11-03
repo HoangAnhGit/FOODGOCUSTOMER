@@ -4,11 +4,9 @@ import com.example.foodgocustomer.Model.ApiResponse;
 import com.example.foodgocustomer.Model.LoginRequest;
 import com.example.foodgocustomer.Model.LoginResponse;
 import com.example.foodgocustomer.Model.RegisterRequest;
-import com.example.foodgocustomer.Model.RegisterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface FoodApi {
