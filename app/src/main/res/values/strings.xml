@@ -32,6 +32,8 @@
     <string name="date_demo">01/11/2025 - 18:30</string>
     <string name="total_money">120.000đ</string>
     <string name="list_order">2x Gà rán, 1x Pepsi, 1x Khoai tây chiên</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 
 
 </resources>

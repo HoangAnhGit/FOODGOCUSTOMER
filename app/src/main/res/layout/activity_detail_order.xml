@@ -115,6 +115,60 @@
         </LinearLayout>
         -->
         <!-- ===== Thông tin địa chỉ ===== -->
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <!-- PHẦN MÃ ĐƠN & GHI CHÚ -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tv_order_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mã đơn: FDG-0001"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/tv_order_note"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ghi chú: Không cay, giao nhanh nha!"
+                        android:textColor="#555555"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <!-- Thông tin tài xế -->
+                <TextView
+                    android:id="@+id/tv_shipper_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tài xế: Nguyễn Văn A - 0912345678"
+                    android:textColor="#777777"
+                    android:textSize="13sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

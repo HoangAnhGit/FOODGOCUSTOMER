@@ -17,16 +17,13 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class FragmentHistory extends Fragment {
 
-    private TabLayout tabLayout;
-    private ViewPager2 viewPager;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
 
-        tabLayout = view.findViewById(R.id.tabLayoutOrders);
-        viewPager = view.findViewById(R.id.viewPagerOrders);
+        TabLayout tabLayout = view.findViewById(R.id.tabLayoutOrders);
+        ViewPager2 viewPager = view.findViewById(R.id.viewPagerOrders);
 
         viewPager.setAdapter(new OrdersPagerAdapter(this));
 

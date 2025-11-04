@@ -65,7 +65,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/searchCard"
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 app:cardCornerRadius="28dp"
                 app:cardElevation="6dp"

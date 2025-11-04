@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <!-- ICON VOUCHER -->
+        <ImageView
+            android:id="@+id/imgVoucherIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/tag"
+            android:padding="12dp"
+            android:scaleType="centerInside" />
+
+        <!-- THÔNG TIN CHÍNH -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp">
+
+            <TextView
+                android:id="@+id/tvVoucherCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FOOD50K"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tvVoucherDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giảm 50.000đ cho đơn từ 150.000đ"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp" />
+
+            <TextView
+                android:id="@+id/tvVoucherValidTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HSD: 30/11/2025"
+                android:textColor="#777777"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- NÚT ÁP DỤNG -->
+        <Button
+            android:id="@+id/btnApplyVoucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Áp dụng"
+            android:textSize="14sp"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

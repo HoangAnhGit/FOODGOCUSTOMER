@@ -12,19 +12,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Load fragment mặc định (Món ăn)
         loadFragment(new FragmentIndex());
 
-        // Xử lý sự kiện khi chọn item
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment fragment = null;
             int id = item.getItemId();

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="8dp">
 
         <!-- Dòng 1: Tên nhà hàng + Trạng thái -->
         <LinearLayout
@@ -35,7 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/status_demo"
-                android:padding="4dp"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="8dp"
                 android:background="@drawable/bg_button"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
