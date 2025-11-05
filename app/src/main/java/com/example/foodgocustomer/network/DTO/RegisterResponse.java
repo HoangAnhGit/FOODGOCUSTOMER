@@ -1,6 +1,6 @@
 package com.example.foodgocustomer.network.DTO;
 
-public class ApiResponse {
+public class RegisterResponse {
     private String title;
     private String status;
     private Object errors; // có thể là Map<String, List<String>>

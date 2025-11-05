@@ -44,10 +44,10 @@
             android:name=".View.Activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Activity.SplashActivity"
+            android:name=".View.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".View.MainActivity"
+            android:name=".View.Activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -12,13 +12,18 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.foodgocustomer.Util.InputEffectHelper;
+import com.example.foodgocustomer.View.MainActivity;
+import com.example.foodgocustomer.ViewModel.LoginViewModel;
+import com.example.foodgocustomer.ViewModel.RegisterViewModel;
 import com.example.foodgocustomer.network.DTO.RegisterRequest;
-import com.example.foodgocustomer.network.DTO.ApiResponse;
+import com.example.foodgocustomer.network.DTO.RegisterResponse;
 import com.example.foodgocustomer.R;
 import com.example.foodgocustomer.databinding.ActivityRegisterBinding;
 import com.example.foodgocustomer.network.ApiClient;
-import com.example.foodgocustomer.network.API.LoginApi;
+import com.example.foodgocustomer.network.API.AuthApi;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +32,7 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
+    private RegisterViewModel registerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +41,25 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.tvRegisterNow.setOnClickListener(view -> {
+        registerViewModel =new ViewModelProvider(this).get(RegisterViewModel.class);
+
+        binding.tvLoginNow.setOnClickListener(view -> {
             startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             finish();
         });
 
         setupInputFocusEffect();
         binding.btnRegister.setOnClickListener(v -> registerUser());
+        observeLogin();
+    }
+
+    private void setupInputFocusEffect() {
+        InputEffectHelper.applyFocusEffect(binding.edtName);
+        InputEffectHelper.applyFocusEffect(binding.edtPhone);
+        InputEffectHelper.applyFocusEffect(binding.edtEmail);
+        InputEffectHelper.applyFocusEffect(binding.edtPassword);
+        InputEffectHelper.applyFocusEffect(binding.edtPasswordAgain);
+        InputEffectHelper.clearErrorOnTextChange(binding.edtName,binding.edtPhone,binding.edtPassword,binding.edtPasswordAgain,binding.edtEmail);
     }
 
     private void registerUser() {
@@ -58,91 +76,36 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
             return;
         }
+        registerViewModel.register(phone,password,confirm,fullName,email);
 
-        showLoading(true);
+    }
 
-        if (!password.equals(confirm)) {
-            Toast.makeText(this, "Mật khẩu nhập lại không khớp!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+    private void observeLogin() {
+        registerViewModel.getRegisterResult().observe(this, result -> {
+            switch (result.status) {
+                case LOADING:
+                    showLoading(true);
+                    break;
 
-        // Gửi request
-        RegisterRequest request = new RegisterRequest(phone, password, confirm, fullName, email);
-
-        LoginApi apiService = ApiClient.getClient().create(LoginApi.class);
-        apiService.registerCustomer(request).enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                case SUCCESS:
+                    showLoading(false);
+                    Toast.makeText(this, "Đăng kí thành công!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, LoginActivity.class));
                     finish();
-                } else {
-                    try {
-                        String err = response.errorBody().string();
-                        Log.e("RegisterError", err);
-                        Toast.makeText(RegisterActivity.this, "Đăng ký thất bại: " + err, Toast.LENGTH_LONG).show();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Toast.makeText(RegisterActivity.this, "Lỗi không xác định!", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
+                    break;
 
-            @Override
-            public void onFailure(@NonNull Call<ApiResponse> call, @NonNull Throwable t) {
-                showLoading(false);
-                Toast.makeText(RegisterActivity.this, "Không thể kết nối máy chủ: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                case ERROR:
+                    showLoading(false);
+                    Toast.makeText(this, result.message, Toast.LENGTH_LONG).show();
+                    break;
             }
         });
     }
 
     private void showLoading(boolean isLoading) {
-        if (isLoading) {
-            binding.includeLoading.getRoot().setVisibility(View.VISIBLE);
-        } else {
-            binding.includeLoading.getRoot().setVisibility(View.GONE);
-        }
+        binding.includeLoading.getRoot().setVisibility(isLoading ? View.VISIBLE : View.GONE);
     }
 
-    private void setupInputFocusEffect() {
-        View.OnFocusChangeListener focusListener = (v, hasFocus) -> {
-            if (hasFocus) {
-                v.setBackgroundResource(R.drawable.bg_input_focused);
-            } else {
-                v.setBackgroundResource(R.drawable.bg_input_login);
-            }
-        };
-
-        binding.edtName.setOnFocusChangeListener(focusListener);
-        binding.edtPhone.setOnFocusChangeListener(focusListener);
-        binding.edtEmail.setOnFocusChangeListener(focusListener);
-        binding.edtPassword.setOnFocusChangeListener(focusListener);
-        binding.edtPasswordAgain.setOnFocusChangeListener(focusListener);
-
-        TextWatcher clearErrorWatcher = new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable editable) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                binding.edtName.setError(null);
-                binding.edtPhone.setError(null);
-                binding.edtEmail.setError(null);
-                binding.edtPassword.setError(null);
-                binding.edtPasswordAgain.setError(null);
-            }
-        };
-
-        binding.edtName.addTextChangedListener(clearErrorWatcher);
-        binding.edtPhone.addTextChangedListener(clearErrorWatcher);
-        binding.edtEmail.addTextChangedListener(clearErrorWatcher);
-        binding.edtPassword.addTextChangedListener(clearErrorWatcher);
-        binding.edtPasswordAgain.addTextChangedListener(clearErrorWatcher);
-    }
 
     private void clearFocusAndHideKeyboard() {
         binding.edtPhone.clearFocus();

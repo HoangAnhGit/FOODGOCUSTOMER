@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.foodgocustomer.Model.Food;
 import com.example.foodgocustomer.databinding.ItemFoodBinding;
+import com.example.foodgocustomer.network.DTO.FoodResponse;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -18,15 +18,15 @@ import java.util.List;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
     private final Context context;
-    private final List<Food> foodList;
+    private final List<FoodResponse> foodList;
     private final OnFoodClickListener listener;
 
     public interface OnFoodClickListener {
-        void onAddClick(Food food);
-        void onItemClick(Food food);
+        void onAddClick(FoodResponse food);
+        void onItemClick(FoodResponse food);
     }
 
-    public FoodAdapter(Context context, List<Food> foodList, OnFoodClickListener listener) {
+    public FoodAdapter(Context context, List<FoodResponse> foodList, OnFoodClickListener listener) {
         this.context = context;
         this.foodList = foodList;
         this.listener = listener;
@@ -43,7 +43,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
-        Food food = foodList.get(position);
+        FoodResponse food = foodList.get(position);
         holder.bind(food);
     }
 
@@ -61,11 +61,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             this.binding = binding;
         }
 
-        public void bind(Food food) {
-            binding.tvFoodName.setText(food.getName());
+        public void bind(FoodResponse food) {
+            binding.tvFoodName.setText(food.getDishName());
             binding.tvPrice.setText(priceFormat.format(food.getPrice()));
-            binding.tvRating.setText(String.format("%.1f", food.getRating()));
-            binding.tvSold.setText(food.getSold() + "+");
+            binding.tvRating.setText(String.format("%.1f", food.getAverageRating()));
+            binding.tvSold.setText(food.getTotalSold() + "+");
 
             // Load ảnh món ăn
             Glide.with(context)
@@ -81,7 +81,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             // Click nút thêm
             binding.btnAdd.setOnClickListener(v -> {
                 if (listener != null) listener.onAddClick(food);
-                Toast.makeText(context, "Đã thêm " + food.getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Đã thêm " + food.getDishName(), Toast.LENGTH_SHORT).show();
             });
         }
     }
