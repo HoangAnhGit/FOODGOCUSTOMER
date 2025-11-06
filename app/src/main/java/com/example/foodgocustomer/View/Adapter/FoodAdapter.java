@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodgocustomer.databinding.ItemFoodBinding;
-import com.example.foodgocustomer.network.DTO.FoodResponse;
+import com.example.foodgocustomer.network.DTO.DishResponse;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -18,15 +18,15 @@ import java.util.List;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
     private final Context context;
-    private final List<FoodResponse> foodList;
+    private final List<DishResponse> foodList;
     private final OnFoodClickListener listener;
 
     public interface OnFoodClickListener {
-        void onAddClick(FoodResponse food);
-        void onItemClick(FoodResponse food);
+        void onAddClick(DishResponse food);
+        void onItemClick(DishResponse food);
     }
 
-    public FoodAdapter(Context context, List<FoodResponse> foodList, OnFoodClickListener listener) {
+    public FoodAdapter(Context context, List<DishResponse> foodList, OnFoodClickListener listener) {
         this.context = context;
         this.foodList = foodList;
         this.listener = listener;
@@ -43,7 +43,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
-        FoodResponse food = foodList.get(position);
+        DishResponse food = foodList.get(position);
         holder.bind(food);
     }
 
@@ -61,7 +61,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             this.binding = binding;
         }
 
-        public void bind(FoodResponse food) {
+        public void bind(DishResponse food) {
             binding.tvFoodName.setText(food.getDishName());
             binding.tvPrice.setText(priceFormat.format(food.getPrice()));
             binding.tvRating.setText(String.format("%.1f", food.getAverageRating()));

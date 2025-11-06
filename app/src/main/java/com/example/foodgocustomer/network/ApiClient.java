@@ -32,4 +32,22 @@ public class ApiClient {
         }
         return retrofit;
     }
+
+    public static Retrofit getClientAuth(String token) {
+        if (retrofit == null) {
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(new AuthInterceptor(token))
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .build();
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
+    }
 }

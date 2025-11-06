@@ -2,7 +2,7 @@ package com.example.foodgocustomer.network.DTO;
 
 import java.math.BigDecimal;
 
-public class FoodResponse {
+public class DishResponse {
     private int dishId;
     private String dishName;
     private String imageUrl;

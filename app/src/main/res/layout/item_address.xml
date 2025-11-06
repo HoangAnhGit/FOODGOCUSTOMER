@@ -4,77 +4,97 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="12dp"
-    android:layout_marginVertical="6dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- Thông tin người nhận -->
-        <TextView
-            android:id="@+id/tv_name"
-            android:text="Nguyễn Văn A"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tv_phone"
-            android:text="0123 456 789"
-            android:textSize="14sp"
-            android:textColor="#555"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <!-- Địa chỉ chi tiết -->
-        <TextView
-            android:id="@+id/tv_address"
-            android:text="146 Trần Phú, Mỗ Lao, Hà Đông, Hà Nội"
-            android:textSize="14sp"
-            android:textColor="#444"
-            android:layout_marginTop="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <!-- Hành động -->
+        <!-- Hàng đầu: tên + số điện thoại -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="6dp"
-            android:gravity="end">
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
 
-            <CheckBox
-                android:id="@+id/cb_default"
-                android:text="Mặc định"
-                android:textColor="@color/colorPrimary"
-                android:buttonTint="@color/colorPrimary"
+            <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Nguyễn Văn A"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/black" />
 
-            <ImageButton
-                android:id="@+id/btn_edit"
-                android:src="@drawable/tag"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Sửa"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+            <!-- View ngăn cách -->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="16dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="#BDBDBD" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0123 456 789"
+                android:textSize="14sp"
+                android:textColor="#555" />
+        </LinearLayout>
+
+        <!-- Địa chỉ đầy đủ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/adress"
                 app:tint="@color/colorPrimary" />
 
-            <ImageButton
-                android:id="@+id/btn_delete"
-                android:src="@drawable/tag"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Xóa"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                app:tint="@android:color/holo_red_dark" />
+            <TextView
+                android:id="@+id/tv_full_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="146 Trần Phú, Mỗ Lao, Hà Đông, Hà Nội"
+                android:textColor="#424242"
+                android:textSize="14sp" />
         </LinearLayout>
+
+        <!-- Mặc định -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:gravity="start"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mặc định"
+                android:textSize="13sp"
+                android:textColor="@color/colorPrimary"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/bg_default_tag"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

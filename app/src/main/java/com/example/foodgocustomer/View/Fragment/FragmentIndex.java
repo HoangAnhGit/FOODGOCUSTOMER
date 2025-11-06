@@ -18,8 +18,8 @@ import com.example.foodgocustomer.R;
 import com.example.foodgocustomer.View.Adapter.BannerAdapter;
 import com.example.foodgocustomer.View.Adapter.FoodAdapter;
 import com.example.foodgocustomer.databinding.FragmentIndexBinding;
-import com.example.foodgocustomer.network.API.FoodApi;
-import com.example.foodgocustomer.network.DTO.FoodResponse;
+import com.example.foodgocustomer.network.API.DishApi;
+import com.example.foodgocustomer.network.DTO.DishResponse;
 import com.example.foodgocustomer.network.ApiClient;
 import com.example.foodgocustomer.network.DTO.PagedResponse;
 
@@ -76,16 +76,16 @@ public class FragmentIndex extends Fragment {
     }
 
     private void loadFoodList() {
-        FoodApi dishApi = ApiClient.getClient().create(FoodApi.class);
-        Call<PagedResponse<FoodResponse>> call = dishApi.getDishes(1, 10);
+        DishApi dishApi = ApiClient.getClient().create(DishApi.class);
+        Call<PagedResponse<DishResponse>> call = dishApi.getAllFoods(1, 10);
 
-        call.enqueue(new Callback<PagedResponse<FoodResponse>>() {
+        call.enqueue(new Callback<PagedResponse<DishResponse>>() {
             @Override
-            public void onResponse(@NonNull Call<PagedResponse<FoodResponse>> call,
-                                   @NonNull Response<PagedResponse<FoodResponse>> response) {
+            public void onResponse(@NonNull Call<PagedResponse<DishResponse>> call,
+                                   @NonNull Response<PagedResponse<DishResponse>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    PagedResponse<FoodResponse> pagedResponse = response.body();
-                    List<FoodResponse> foods = pagedResponse.getData();
+                    PagedResponse<DishResponse> pagedResponse = response.body();
+                    List<DishResponse> foods = pagedResponse.getData();
                     if (foods != null) {
                         setupRecyclerView(foods);
                     } else {
@@ -97,7 +97,7 @@ public class FragmentIndex extends Fragment {
             }
 
             @Override
-            public void onFailure(@NonNull Call<PagedResponse<FoodResponse>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Throwable t) {
                 Log.e("FoodAPI", "Error: " + t.getMessage());
                 Toast.makeText(getContext(), "Lỗi kết nối server!", Toast.LENGTH_SHORT).show();
             }
@@ -105,15 +105,15 @@ public class FragmentIndex extends Fragment {
     }
 
 
-    private void setupRecyclerView(List<FoodResponse> foods) {
+    private void setupRecyclerView(List<DishResponse> foods) {
         FoodAdapter.OnFoodClickListener listener = new FoodAdapter.OnFoodClickListener() {
             @Override
-            public void onAddClick(FoodResponse food) {
+            public void onAddClick(DishResponse food) {
                 Toast.makeText(getContext(), "Đã thêm " + food.getDishName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onItemClick(FoodResponse food) {
+            public void onItemClick(DishResponse food) {
                 Toast.makeText(getContext(), "Chi tiết: " + food.getDishName(), Toast.LENGTH_SHORT).show();
             }
         };

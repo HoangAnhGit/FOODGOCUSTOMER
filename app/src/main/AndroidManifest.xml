@@ -16,6 +16,15 @@
         android:theme="@style/Theme.FOODGOCUSTOMER"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View.Activity.AddAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.EditProflieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.Activity.ManagerAddressActivity"
             android:exported="false" />
         <activity

@@ -1,0 +1,121 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm địa chỉ mới"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Tên -->
+        <EditText
+            android:id="@+id/edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Họ và tên người nhận"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Số điện thoại -->
+        <EditText
+            android:id="@+id/edt_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số điện thoại liên hệ"
+            android:inputType="phone"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Street -->
+        <EditText
+            android:id="@+id/edt_street"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số nhà, tên đường"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Ward -->
+        <EditText
+            android:id="@+id/edt_ward"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phường / Xã"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- District -->
+        <EditText
+            android:id="@+id/edt_district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quận / Huyện"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- City -->
+        <EditText
+            android:id="@+id/edt_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tỉnh / Thành phố"
+            android:background="@drawable/bg_edittext"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Switch mặc định -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đặt làm địa chỉ mặc định"
+                android:textSize="15sp"
+                android:textColor="@color/black"/>
+
+            <Switch
+                android:id="@+id/switch_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumbTint="@color/colorPrimary"
+                android:trackTint="@color/colorPrimary" />
+        </LinearLayout>
+
+        <!-- Nút lưu -->
+        <Button
+            android:id="@+id/btn_save_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lưu địa chỉ"
+            android:textStyle="bold"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:paddingVertical="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+</ScrollView>

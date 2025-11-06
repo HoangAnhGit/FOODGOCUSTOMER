@@ -161,15 +161,38 @@
                 android:background="@drawable/bg_radius_white"
                 android:padding="12dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <!-- Hàng tiêu đề + thêm đơn -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tóm tắt đơn"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="8dp" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
 
+                    <TextView
+                        android:id="@+id/tv_order_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tóm tắt đơn"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_add_order"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thêm món"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:padding="4dp"
+                        android:clickable="true"
+                        android:focusable="true" />
+                </LinearLayout>
+
+                <!-- Danh sách đơn -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_order_summary"
                     android:layout_width="match_parent"
