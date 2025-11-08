@@ -19,7 +19,7 @@
             android:name=".View.Activity.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Activity.EditProflieActivity"
+            android:name=".View.Activity.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".View.Activity.SearchActivity"

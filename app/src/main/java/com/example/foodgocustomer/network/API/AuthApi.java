@@ -18,4 +18,6 @@ public interface AuthApi {
     @POST("/api/Auth/login")
     Call<LoginResponse> login(@Body LoginRequest body);
 
+
+
 }

@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.foodgocustomer.R;
+import com.example.foodgocustomer.Util.TokenManager;
 import com.example.foodgocustomer.View.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -47,7 +48,10 @@ public class SplashActivity extends AppCompatActivity {
 
 
     private boolean isUserLoggedIn() {
-        // Ở giai đoạn sau, bạn sẽ thay phần này bằng SharedPreferences hoặc Token
-        return false; // Tạm thời luôn false => luôn sang LoginActivity
+        TokenManager tokenManager = TokenManager.getInstance(this);
+        String token = tokenManager.getToken();
+        return token != null && !token.isEmpty();
     }
+
+
 }

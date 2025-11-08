@@ -1,10 +1,15 @@
 package com.example.foodgocustomer.View;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.example.foodgocustomer.R;
+import com.example.foodgocustomer.Util.TokenManager;
+import com.example.foodgocustomer.View.Activity.LoginActivity;
 import com.example.foodgocustomer.View.Fragment.FragmentIndex;
 import com.example.foodgocustomer.View.Fragment.FragmentHistory;
 import com.example.foodgocustomer.View.Fragment.FragmentProfile;
@@ -18,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        TokenManager tokenManager = TokenManager.getInstance(this);
+        String token = tokenManager.getToken();
+        if (token == null || token.isEmpty()) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         loadFragment(new FragmentIndex());
 

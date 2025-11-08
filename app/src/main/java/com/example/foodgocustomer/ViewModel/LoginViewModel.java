@@ -1,5 +1,9 @@
 package com.example.foodgocustomer.ViewModel;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,14 +12,19 @@ import com.example.foodgocustomer.Repository.AuthRepository;
 import com.example.foodgocustomer.Util.Result;
 import com.example.foodgocustomer.network.DTO.LoginResponse;
 
-public class LoginViewModel extends ViewModel {
+import java.io.Closeable;
+
+public class LoginViewModel extends AndroidViewModel {
 
     private final AuthRepository repository;
+    private final Application app;
     private final MutableLiveData<Result<LoginResponse>> loginResult = new MutableLiveData<>();
     private final MutableLiveData<Boolean> loading = new MutableLiveData<>(false);
 
-    public LoginViewModel() {
+    public LoginViewModel(@NonNull Application application) {
+        super(application);
         repository = new AuthRepository();
+        this.app = application;
     }
 
     public LiveData<Result<LoginResponse>> getLoginResult() {
@@ -25,7 +34,7 @@ public class LoginViewModel extends ViewModel {
     public void login(String phone, String password) {
         loading.setValue(true);
         loginResult.setValue(Result.loading());
-        repository.login(phone, password).observeForever(loginResult::setValue);
+        repository.login(app.getApplicationContext(),phone, password).observeForever(loginResult::setValue);
     }
 
     public LiveData<Boolean> getLoading() {

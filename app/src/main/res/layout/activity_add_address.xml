@@ -11,15 +11,29 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Tiêu đề -->
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thêm địa chỉ mới"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginBottom="16dp"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_back"
+                android:src="@drawable/back"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thêm địa chỉ mới"
+                android:textSize="20sp"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginBottom="16dp"/>
+
+
+        </LinearLayout>
 
         <!-- Tên -->
         <EditText
@@ -31,16 +45,6 @@
             android:padding="12dp"
             android:layout_marginBottom="10dp" />
 
-        <!-- Số điện thoại -->
-        <EditText
-            android:id="@+id/edt_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Số điện thoại liên hệ"
-            android:inputType="phone"
-            android:background="@drawable/bg_edittext"
-            android:padding="12dp"
-            android:layout_marginBottom="10dp" />
 
         <!-- Street -->
         <EditText

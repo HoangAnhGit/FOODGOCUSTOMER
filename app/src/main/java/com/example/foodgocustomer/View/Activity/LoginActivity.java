@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.foodgocustomer.Util.InputEffectHelper;
+import com.example.foodgocustomer.Util.TokenManager;
 import com.example.foodgocustomer.View.MainActivity;
 import com.example.foodgocustomer.ViewModel.LoginViewModel;
 import com.example.foodgocustomer.databinding.ActivityLoginBinding;
@@ -24,10 +25,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        viewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()))
+                .get(LoginViewModel.class);
 
         binding.tvRegisterNow.setOnClickListener(view -> {
             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
@@ -55,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
 //                binding.includeLoading.getRoot().setVisibility(isLoading ? View.VISIBLE : View.GONE));
     }
 
+
+
     private void observeLogin() {
         viewModel.getLoginResult().observe(this, result -> {
             switch (result.status) {
@@ -63,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     break;
 
                 case SUCCESS:
+
                     showLoading(false);
                     Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, MainActivity.class));

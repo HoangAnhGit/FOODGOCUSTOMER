@@ -15,7 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DishRepository {
-    private DishApi dishApi;
+    private final DishApi dishApi;
 
     public DishRepository(){ dishApi = ApiClient.getClient().create(DishApi.class);}
 

@@ -8,7 +8,7 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AuthInterceptor implements Interceptor {
+class AuthInterceptor implements Interceptor {
     private final String token;
 
     public AuthInterceptor(String token) {
@@ -18,10 +18,15 @@ public class AuthInterceptor implements Interceptor {
     @NonNull
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
-        Request originalRequest = chain.request();
-        Request.Builder builder = originalRequest.newBuilder()
-                .header("Authorization", "Bearer " + token);
-        Request newRequest = builder.build();
-        return chain.proceed(newRequest);
+        Request original = chain.request();
+        Request.Builder builder = original.newBuilder();
+
+        if (token != null && !token.isEmpty()) {
+            builder.header("Authorization", "Bearer " + token);
+        }
+
+        Request request = builder.build();
+        return chain.proceed(request);
     }
 }
+
