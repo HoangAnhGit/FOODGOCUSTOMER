@@ -13,6 +13,7 @@ import com.example.foodgocustomer.Repository.ProfileRepository;
 import com.example.foodgocustomer.Util.Result;
 import com.example.foodgocustomer.network.DTO.AddressDto;
 import com.example.foodgocustomer.network.DTO.ApiResponse;
+import com.example.foodgocustomer.network.DTO.OrderHistoryResponse;
 import com.example.foodgocustomer.network.DTO.UserProfileDto;
 
 import java.io.Closeable;
@@ -53,5 +54,9 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public LiveData<Result<ApiResponse>> addAddress(AddressDto addressDto) {
         return profileRepository.addAddress(addressDto);
+    }
+
+    public LiveData<Result<OrderHistoryResponse>> getOrderHistory(int pageNumber, int pageSize, String status) {
+        return profileRepository.getOrderHistory(pageNumber, pageSize, status);
     }
 }

@@ -27,6 +27,8 @@ public class AddAddressActivity extends AppCompatActivity {
         binding = ActivityAddAddressBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.imgBack.setOnClickListener(view -> {finish();});
+
         // Khởi tạo ViewModel
         addressViewModel = new ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()))

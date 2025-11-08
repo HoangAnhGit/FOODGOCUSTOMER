@@ -13,6 +13,7 @@ import com.example.foodgocustomer.network.API.CustomerApi;
 import com.example.foodgocustomer.network.ApiClient;
 import com.example.foodgocustomer.network.DTO.AddressDto;
 import com.example.foodgocustomer.network.DTO.ApiResponse;
+import com.example.foodgocustomer.network.DTO.OrderHistoryResponse;
 import com.example.foodgocustomer.network.DTO.UserProfileDto;
 
 import java.util.List;
@@ -119,5 +120,30 @@ public class ProfileRepository {
             }
         });
         return  result;
+    }
+
+    public LiveData<Result<OrderHistoryResponse>> getOrderHistory(int pageNumber, int pageSize, String status) {
+        MutableLiveData<Result<OrderHistoryResponse>> result = new MutableLiveData<>();
+        result.setValue(Result.loading());
+
+        customerApi.getOrderHistory(pageNumber, pageSize, status).enqueue(new Callback<OrderHistoryResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<OrderHistoryResponse> call, @NonNull Response<OrderHistoryResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    result.setValue(Result.success(response.body()));
+                } else {
+                    String errorMsg = "Tải lịch sử thất bại (Mã: " + response.code() + ")";
+                    Log.e("ProfileRepository", errorMsg);
+                    result.setValue(Result.error(errorMsg));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<OrderHistoryResponse> call, @NonNull Throwable throwable) {
+                Log.e("ProfileRepository", "Lỗi kết nối khi tải lịch sử", throwable);
+                result.setValue(Result.error("Lỗi kết nối: " + throwable.getMessage()));
+            }
+        });
+        return result;
     }
 }

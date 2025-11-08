@@ -1,24 +1,35 @@
 package com.example.foodgocustomer.View.Adapter;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.foodgocustomer.Model.Order;
+// 1. Sửa import (bỏ Order, thêm ItemOrderHistoryDto)
+import com.example.foodgocustomer.R;
+import com.example.foodgocustomer.network.DTO.ItemOrderHistoryDto;
 import com.example.foodgocustomer.databinding.ItemOrderHistoryBinding;
 
+import java.text.NumberFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.OrderViewHolder> {
 
-    private List<Order> orderList;
-    private OnItemClickListener listener;
+    private final List<ItemOrderHistoryDto> orderList;
+    private final OnItemClickListener listener;
+
     public interface OnItemClickListener {
-        void onItemClick(Order order);
+        void onItemClick(ItemOrderHistoryDto order);
     }
 
-    public OrderHistoryAdapter(List<Order> orderList, OnItemClickListener listener) {
+    public OrderHistoryAdapter(List<ItemOrderHistoryDto> orderList, OnItemClickListener listener) {
         this.orderList = orderList;
         this.listener = listener;
     }
@@ -34,7 +45,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
-        Order order = orderList.get(position);
+        ItemOrderHistoryDto order = orderList.get(position);
         holder.bind(order, listener);
     }
 
@@ -51,15 +62,41 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             this.binding = binding;
         }
 
-        public void bind(Order order, OnItemClickListener listener) {
+
+        public void bind(ItemOrderHistoryDto order, OnItemClickListener listener) {
             binding.tvRestaurantName.setText(order.getRestaurantName());
-            binding.tvOrderStatus.setText(order.getStatus());
-            binding.tvOrderDate.setText(order.getOrderDate());
-            binding.tvTotalPrice.setText(order.getTotalPrice());
             binding.tvOrderSummary.setText(order.getOrderSummary());
 
-            // Bắt sự kiện click
+
+            String status = order.getOrderStatus();
+            binding.tvOrderStatus.setText(status);
+
+
+            binding.tvOrderDate.setText(formatDate(order.getOrderDate()));
+
+            binding.tvTotalPrice.setText(formatCurrency(order.getTotalPrice()));
+
             binding.getRoot().setOnClickListener(v -> listener.onItemClick(order));
+        }
+
+        private String formatCurrency(double price) {
+            Locale locale = new Locale("vi", "VN");
+            NumberFormat formatter = NumberFormat.getCurrencyInstance(locale);
+            return formatter.format(price);
+        }
+
+        /**
+         * Helper: Chuyển "2025-11-08T13:30:00Z" thành "13:30 08/11/2025"
+         */
+        private String formatDate(String isoDateString) {
+            try {
+                ZonedDateTime zonedDateTime = ZonedDateTime.parse(isoDateString);
+                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+                return zonedDateTime.format(outputFormatter);
+            } catch (Exception e) {
+                Log.e("OrderHistoryAdapter", "Lỗi format ngày: ", e);
+                return isoDateString; // Trả về chuỗi gốc nếu lỗi
+            }
         }
     }
 }

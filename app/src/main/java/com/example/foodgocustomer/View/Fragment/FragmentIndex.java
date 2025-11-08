@@ -2,34 +2,23 @@ package com.example.foodgocustomer.View.Fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.foodgocustomer.R;
 import com.example.foodgocustomer.View.Adapter.BannerAdapter;
-import com.example.foodgocustomer.View.Adapter.FoodAdapter;
 import com.example.foodgocustomer.databinding.FragmentIndexBinding;
-import com.example.foodgocustomer.network.API.DishApi;
-import com.example.foodgocustomer.network.DTO.DishResponse;
-import com.example.foodgocustomer.network.ApiClient;
-import com.example.foodgocustomer.network.DTO.PagedResponse;
 
 
 import java.util.Arrays;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FragmentIndex extends Fragment {
 
@@ -63,7 +52,6 @@ public class FragmentIndex extends Fragment {
         View view = binding.getRoot();
 
         startViewPager();
-        loadFoodList();
 
         return view;
     }
@@ -75,53 +63,6 @@ public class FragmentIndex extends Fragment {
         handler.postDelayed(bannerRunnable, 3000);
     }
 
-    private void loadFoodList() {
-        DishApi dishApi = ApiClient.getClient().create(DishApi.class);
-        Call<PagedResponse<DishResponse>> call = dishApi.getAllFoods(1, 10);
-
-        call.enqueue(new Callback<PagedResponse<DishResponse>>() {
-            @Override
-            public void onResponse(@NonNull Call<PagedResponse<DishResponse>> call,
-                                   @NonNull Response<PagedResponse<DishResponse>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    PagedResponse<DishResponse> pagedResponse = response.body();
-                    List<DishResponse> foods = pagedResponse.getData();
-                    if (foods != null) {
-                        setupRecyclerView(foods);
-                    } else {
-                        Toast.makeText(getContext(), "Không có dữ liệu!", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getContext(), "Không tải được danh sách món ăn", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Throwable t) {
-                Log.e("FoodAPI", "Error: " + t.getMessage());
-                Toast.makeText(getContext(), "Lỗi kết nối server!", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-    private void setupRecyclerView(List<DishResponse> foods) {
-        FoodAdapter.OnFoodClickListener listener = new FoodAdapter.OnFoodClickListener() {
-            @Override
-            public void onAddClick(DishResponse food) {
-                Toast.makeText(getContext(), "Đã thêm " + food.getDishName(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onItemClick(DishResponse food) {
-                Toast.makeText(getContext(), "Chi tiết: " + food.getDishName(), Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        FoodAdapter foodAdapter = new FoodAdapter(getContext(), foods, listener);
-        binding.rcvCategoryFood.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rcvCategoryFood.setAdapter(foodAdapter);
-    }
 
     @Override
     public void onPause() {

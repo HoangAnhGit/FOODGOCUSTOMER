@@ -4,6 +4,7 @@ import com.example.foodgocustomer.Model.Address;
 import com.example.foodgocustomer.Model.OrderHistory;
 import com.example.foodgocustomer.network.DTO.AddressDto;
 import com.example.foodgocustomer.network.DTO.ApiResponse;
+import com.example.foodgocustomer.network.DTO.OrderHistoryResponse;
 import com.example.foodgocustomer.network.DTO.UserProfileDto;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public interface CustomerApi {
     Call<List<Address>> getAddress();
 
     @GET("/api/Customer/orders/history")
-    Call<List<OrderHistory>> getOrderHistory(
+    Call<OrderHistoryResponse> getOrderHistory(
             @Query("pageNumber") int pageNumber,
             @Query("pageSize") int pageSize,
             @Query("status") String status
