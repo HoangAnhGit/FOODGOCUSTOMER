@@ -14,15 +14,14 @@ public class ItemOrderHistoryDto {
     private String orderStatus;
 
     @SerializedName("orderDate")
-    private String orderDate; // Dùng String cho ngày tháng là đơn giản nhất
+    private String orderDate;
 
     @SerializedName("totalPrice")
-    private double totalPrice; // Dùng double cho tiền tệ
+    private double totalPrice;
 
     @SerializedName("orderSummary")
     private String orderSummary;
 
-    // --- Getters ---
 
     public int getOrderId() {
         return orderId;

@@ -25,7 +25,6 @@ public class ItemRestaurantDto {
     @SerializedName("distanceInKm")
     private double distanceInKm;
 
-    // --- Getters ---
     public int getRestaurantId() { return restaurantId; }
     public String getName() { return name; }
     public String getImageUrl() { return imageUrl; }

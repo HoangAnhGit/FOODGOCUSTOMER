@@ -10,7 +10,6 @@ public class OrderItemDetailDto {
     @SerializedName("priceAtOrder")
     private double priceAtOrder;
 
-    // Getters
     public String getDishName() { return dishName; }
     public int getQuantity() { return quantity; }
     public double getPriceAtOrder() { return priceAtOrder; }

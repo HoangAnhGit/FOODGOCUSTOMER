@@ -3,7 +3,7 @@ package com.example.foodgocustomer.network.DTO;
 public class RegisterResponse {
     private String title;
     private String status;
-    private Object errors; // có thể là Map<String, List<String>>
+    private Object errors;
 
     public String getTitle() { return title; }
     public String getStatus() { return status; }

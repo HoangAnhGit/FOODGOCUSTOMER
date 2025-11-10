@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- HEADER -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="180dp"
@@ -96,7 +95,8 @@
                     android:layout_marginTop="6dp"
                     android:text="146 Trần Phú, Mỗ Lao, Hà Đông"
                     android:textColor="#555555"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:visibility="gone"/>
 
                 <Button
                     android:id="@+id/btn_manage_address"

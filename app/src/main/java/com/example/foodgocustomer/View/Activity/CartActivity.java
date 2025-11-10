@@ -20,7 +20,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-// BỎ "abstract"
 public class CartActivity extends AppCompatActivity implements CartItemAdapter.OnCartItemChangeListener {
 
     private ActivityCartBinding binding;
@@ -76,13 +75,11 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.O
             return;
         }
 
-        // === SỬA LẠI LOGIC LẤY ID NHÀ HÀNG ===
         List<RequestOrderItemDto> orderItems = new ArrayList<>();
         for (CartItem item : currentItems) {
             orderItems.add(new RequestOrderItemDto(item.getDish().getDishId(), item.getQuantity()));
         }
 
-        // Lấy ID nhà hàng từ CartManager (an toàn)
         int restaurantId = cartManager.getCurrentRestaurantId();
 
         if (restaurantId == -1) {
@@ -91,7 +88,6 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.O
             binding.btnPlaceOrder.setText("Đặt hàng");
             return;
         }
-        // ===================================
 
         RequestOrderDto orderRequest = new RequestOrderDto(restaurantId, orderItems);
 
@@ -112,7 +108,6 @@ public class CartActivity extends AppCompatActivity implements CartItemAdapter.O
                     finish();
                     break;
                 case ERROR:
-                    // THÊM TOAST BÁO LỖI
                     Toast.makeText(this, "Đặt hàng thất bại: " + result.message, Toast.LENGTH_LONG).show();
                     binding.btnPlaceOrder.setEnabled(true);
                     binding.btnPlaceOrder.setText("Đặt hàng");

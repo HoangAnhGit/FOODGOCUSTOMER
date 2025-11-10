@@ -32,8 +32,7 @@ public class ResponseOrderDto {
     @SerializedName("items")
     private List<ResponseOrderItemDto> items;
 
-    // Getters
     public int getOrderId() { return orderId; }
     public String getOrderCode() { return orderCode; }
-    // ... (thêm các getters khác)
+
 }

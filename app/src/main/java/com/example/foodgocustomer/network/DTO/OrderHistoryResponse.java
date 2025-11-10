@@ -1,7 +1,7 @@
 package com.example.foodgocustomer.network.DTO;
 
 import com.google.gson.annotations.SerializedName;
-import java.util.List; // <-- Quan trọng: Import List
+import java.util.List;
 
 public class OrderHistoryResponse {
 
@@ -18,9 +18,8 @@ public class OrderHistoryResponse {
     private int totalRecords;
 
     @SerializedName("data")
-    private List<ItemOrderHistoryDto> data; // <-- Chứa danh sách các đơn hàng
+    private List<ItemOrderHistoryDto> data;
 
-    // --- Getters ---
 
     public int getPageNumber() {
         return pageNumber;

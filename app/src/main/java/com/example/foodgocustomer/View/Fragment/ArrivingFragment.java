@@ -25,8 +25,6 @@ import java.util.List;
 
 public class ArrivingFragment extends Fragment implements OrderHistoryAdapter.OnItemClickListener {
 
-    // === TÊN TRẠNG THÁI CẦN LỌC ===
-    // (Thay đổi "DELIVERING" nếu server của bạn dùng tên khác)
     private static final String STATUS_FILTER = "DELIVERING";
 
     private FragmentArrivingBinding binding;

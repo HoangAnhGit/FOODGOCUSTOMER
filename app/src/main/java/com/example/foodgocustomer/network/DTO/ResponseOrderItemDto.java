@@ -14,8 +14,8 @@ public class ResponseOrderItemDto {
     @SerializedName("total")
     private double total;
 
-    // Getters
+
     public int getDishId() { return dishId; }
     public String getDishName() { return dishName; }
-    // ... (thêm các getters khác)
+
 }

@@ -82,7 +82,6 @@ public class EditProfileActivity extends AppCompatActivity {
                         binding.edtEmail.setText(user.getEmail());
 
 
-                        // Load avatar (nếu có)
                         if (user.getAvatarUrl() != null && !user.getAvatarUrl().isEmpty()) {
                             Glide.with(this)
                                     .load(user.getAvatarUrl())

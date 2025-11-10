@@ -33,7 +33,6 @@ public class DraftFragment extends Fragment implements OrderHistoryAdapter.OnIte
     private OrderHistoryAdapter orderAdapter;
     private List<ItemOrderHistoryDto> orderList = new ArrayList<>();
 
-    // Biến quản lý phân trang
     private int currentPage = 1;
     private int totalPages = 1;
     private boolean isLoading = false;
@@ -97,9 +96,9 @@ public class DraftFragment extends Fragment implements OrderHistoryAdapter.OnIte
                         orderList.addAll(result.data.getData());
                         orderAdapter.notifyDataSetChanged();
 
-                        // Hiển thị thông báo nếu danh sách rỗng
+
                         if (orderList.isEmpty()) {
-                            binding.tvEmptyMessage.setVisibility(View.VISIBLE); // (Cần thêm TextView này)
+                            binding.tvEmptyMessage.setVisibility(View.VISIBLE);
                         } else {
                             binding.tvEmptyMessage.setVisibility(View.GONE);
                         }
@@ -111,14 +110,11 @@ public class DraftFragment extends Fragment implements OrderHistoryAdapter.OnIte
                     Toast.makeText(getContext(), result.message, Toast.LENGTH_SHORT).show();
                     break;
             }
-            // Hủy observe
+
             profileViewModel.getOrderHistory(page, PAGE_SIZE, STATUS_FILTER).removeObservers(getViewLifecycleOwner());
         });
     }
 
-    /**
-     * Xử lý sự kiện cuộn để tải thêm
-     */
     private void setupScrollListener() {
         binding.rcvDraft.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -146,8 +142,7 @@ public class DraftFragment extends Fragment implements OrderHistoryAdapter.OnIte
     public void onItemClick(ItemOrderHistoryDto order) {
         Toast.makeText(getContext(), "Tiếp tục đơn hàng nháp: " + order.getOrderId(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getActivity(), DetailOrderActivity.class);
-        // Truyền ID của đơn hàng sang Activity mới
-        intent.putExtra("ORDER_ID", order.getOrderId()); // (Giả sử ItemOrderHistoryDto có getOrderId())
+        intent.putExtra("ORDER_ID", order.getOrderId());
         startActivity(intent);
 
     }

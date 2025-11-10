@@ -8,7 +8,6 @@ public class ShipperInfoDto {
     @SerializedName("phoneNumber")
     private String phoneNumber;
 
-    // Getters
     public String getFullName() { return fullName; }
     public String getPhoneNumber() { return phoneNumber; }
 }

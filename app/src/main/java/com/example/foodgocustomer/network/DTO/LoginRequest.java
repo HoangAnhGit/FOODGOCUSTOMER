@@ -9,7 +9,6 @@ public class LoginRequest {
         this.password = password;
     }
 
-    // Getters
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -18,7 +17,6 @@ public class LoginRequest {
         return password;
     }
 
-    // Setters (nếu cần)
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

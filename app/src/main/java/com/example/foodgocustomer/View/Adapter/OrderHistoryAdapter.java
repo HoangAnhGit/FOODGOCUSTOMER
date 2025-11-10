@@ -85,9 +85,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             return formatter.format(price);
         }
 
-        /**
-         * Helper: Chuyển "2025-11-08T13:30:00Z" thành "13:30 08/11/2025"
-         */
+
         private String formatDate(String isoDateString) {
             try {
                 ZonedDateTime zonedDateTime = ZonedDateTime.parse(isoDateString);
@@ -95,7 +93,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
                 return zonedDateTime.format(outputFormatter);
             } catch (Exception e) {
                 Log.e("OrderHistoryAdapter", "Lỗi format ngày: ", e);
-                return isoDateString; // Trả về chuỗi gốc nếu lỗi
+                return isoDateString;
             }
         }
     }

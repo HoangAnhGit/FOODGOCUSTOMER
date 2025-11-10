@@ -49,7 +49,6 @@ public class OrderRepository {
         MutableLiveData<Result<ResponseOrderDto>> data = new MutableLiveData<>();
         data.setValue(Result.loading());
 
-        // apiService là client đã được xác thực (auth)
         apiService.createOrder(orderRequest).enqueue(new Callback<ResponseOrderDto>() {
             @Override
             public void onResponse(@NonNull Call<ResponseOrderDto> call, @NonNull Response<ResponseOrderDto> response) {

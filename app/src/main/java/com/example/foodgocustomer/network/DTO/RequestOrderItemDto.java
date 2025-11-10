@@ -14,7 +14,6 @@ public class RequestOrderItemDto {
         this.quantity = quantity;
     }
 
-    // Getters
     public int getDishId() { return dishId; }
     public int getQuantity() { return quantity; }
 }

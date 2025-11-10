@@ -54,13 +54,11 @@ public class FragmentIndex extends Fragment
         }
     };
 
-    // --- Biến cho RecyclerViews ---
     private RestaurantViewModel restaurantViewModel;
     private RestaurantHomeAdapter restaurantAdapter;
     private DishViewModel dishViewModel;
     private FoodAdapter foodAdapter;
 
-    // --- Biến trạng thái loading ---
     private boolean isRestaurantLoading = false;
     private boolean isDishLoading = false;
 
@@ -78,18 +76,14 @@ public class FragmentIndex extends Fragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 1. Khởi tạo Banner
         setupBanner();
 
-        // 2. Khởi tạo ViewModels
         initViewModels();
 
-        // 3. Cài đặt RecyclerViews
         setupRecyclerViews();
 
-        // 4. Tải dữ liệu
         loadRestaurantData();
-        loadDishData();
+      //  loadDishData();
     }
 
     private void setupBanner() {
@@ -104,17 +98,16 @@ public class FragmentIndex extends Fragment
     }
 
     private void setupRecyclerViews() {
-        // Cài đặt cho Nhà hàng (Vertical)
-        // === SỬA LẠI 2: Truyền 'this' vào adapter ===
+
         restaurantAdapter = new RestaurantHomeAdapter(new ArrayList<>(), this);
         binding.rcvRestaurant.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         binding.rcvRestaurant.setAdapter(restaurantAdapter);
         binding.rcvRestaurant.setNestedScrollingEnabled(false);
 
-        // Cài đặt cho Món ăn (Horizontal)
-        foodAdapter = new FoodAdapter(new ArrayList<>(), this); // 'this' là OnFoodClickListener
-        binding.rcvCategoryFood.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        binding.rcvCategoryFood.setAdapter(foodAdapter);
+
+//        foodAdapter = new FoodAdapter(new ArrayList<>(), this);
+//        binding.rcvCategoryFood.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//        binding.rcvCategoryFood.setAdapter(foodAdapter);
     }
 
     private void loadRestaurantData() {
@@ -191,7 +184,6 @@ public class FragmentIndex extends Fragment
         binding = null;
     }
 
-    // --- Hàm click cho Món ăn (FoodAdapter) ---
     @Override
     public void onAddClick(DishResponse food) {
         Toast.makeText(getContext(), "Đã thêm: " + food.getDishName(), Toast.LENGTH_SHORT).show();
@@ -199,16 +191,13 @@ public class FragmentIndex extends Fragment
 
     @Override
     public void onItemClick(DishResponse food) {
-        // Xử lý khi nhấn vào cả item
         Toast.makeText(getContext(), "Xem chi tiết: " + food.getDishName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRestaurantClick(ItemRestaurantDto restaurant) {
-        // Mở màn hình Chi tiết Nhà hàng
         Intent intent = new Intent(getActivity(), RestaurantDetailActivity.class);
 
-        // Gửi ID và Tên của nhà hàng sang Activity mới
         intent.putExtra("RESTAURANT_ID", restaurant.getRestaurantId());
         intent.putExtra("RESTAURANT_NAME", restaurant.getName());
         intent.putExtra("RESTAURANT", restaurant.getAverageRating());

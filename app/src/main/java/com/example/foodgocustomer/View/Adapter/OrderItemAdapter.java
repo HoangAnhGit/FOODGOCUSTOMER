@@ -55,7 +55,6 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.Item
             String quantityXName = item.getQuantity() + " x " + item.getDishName();
             binding.tvQuantityXName.setText(quantityXName);
 
-            // Hiển thị tổng tiền cho món đó (Giá * Số lượng)
             double totalPrice = item.getPriceAtOrder() * item.getQuantity();
             binding.tvItemPrice.setText(new DecimalFormat("#,###đ").format(totalPrice));
         }

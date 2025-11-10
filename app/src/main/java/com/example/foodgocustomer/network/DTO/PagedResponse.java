@@ -20,7 +20,6 @@ public class PagedResponse<T> {
     @SerializedName("totalRecords")
     private int totalRecords;
 
-    // --- TRƯỜNG MỚI CHO API RESTAURANT ---
     @SerializedName("hasCustomerAddress")
     private Boolean hasCustomerAddress;
 

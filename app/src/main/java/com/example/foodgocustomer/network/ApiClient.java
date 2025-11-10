@@ -34,9 +34,7 @@ public class ApiClient {
 
     public static Retrofit getClientAuth(Context context) {
 
-        // 1. Lấy instance của TokenManager
         TokenManager tokenManager = TokenManager.getInstance(context);
-        // 2. Lấy token từ SharedPreferences
         String token = tokenManager.getToken();
 
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();

@@ -1,4 +1,4 @@
-package com.example.foodgocustomer.common;
+package com.example.foodgocustomer.Util;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -9,9 +9,6 @@ import androidx.lifecycle.Observer;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-/**
- * Lớp LiveData đặc biệt chỉ phát sự kiện một lần
- */
 public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
     private final AtomicBoolean mPending = new AtomicBoolean(false);

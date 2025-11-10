@@ -20,7 +20,6 @@ public class ResponseOrderDetailDto {
     @SerializedName("summary")
     private OrderSummaryDto summary;
 
-    // Getters
     public String getStatusText() { return statusText; }
     public String getEstimatedDeliveryTime() { return estimatedDeliveryTime; }
     public String getOrderStatusKey() { return orderStatusKey; }

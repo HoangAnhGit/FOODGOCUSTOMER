@@ -19,7 +19,6 @@ public class OrderSummaryDto {
     @SerializedName("paymentStatusText")
     private String paymentStatusText;
 
-    // Getters
     public List<OrderItemDetailDto> getItems() { return items; }
     public double getSubtotal() { return subtotal; }
     public double getShippingFee() { return shippingFee; }

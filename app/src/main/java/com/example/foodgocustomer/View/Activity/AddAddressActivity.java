@@ -29,26 +29,19 @@ public class AddAddressActivity extends AppCompatActivity {
 
         binding.imgBack.setOnClickListener(view -> {finish();});
 
-        // Khởi tạo ViewModel
         addressViewModel = new ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()))
                 .get(ProfileViewModel.class);
 
-        // Khởi tạo ProgressDialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Đang thêm địa chỉ...");
         progressDialog.setCancelable(false);
 
-        // Thiết lập sự kiện
         binding.imgBack.setOnClickListener(v -> finish());
         binding.btnSaveAddress.setOnClickListener(v -> handleSaveAddress());
     }
 
-    /**
-     * Xử lý sự kiện nhấn nút lưu địa chỉ.
-     */
     private void handleSaveAddress() {
-        // 1. Lấy dữ liệu từ các trường EditText
         String name = binding.edtName.getText().toString().trim();
         String street = binding.edtStreet.getText().toString().trim();
         String ward = binding.edtWard.getText().toString().trim();
@@ -56,25 +49,19 @@ public class AddAddressActivity extends AppCompatActivity {
         String city = binding.edtCity.getText().toString().trim();
         boolean isDefault = binding.switchDefault.isChecked();
 
-        // 2. Validate dữ liệu
         if (!validateInput(name, street, ward, district, city)) {
             return;
         }
 
-        // 3. Tạo FullAddress (Địa chỉ đầy đủ)
         String fullAddress = String.format("%s, %s, %s, %s, %s",
                 name, street, ward, district, city);
 
-        // 4. Tạo đối tượng DTO
         AddressDto newAddress = new AddressDto(street, ward, district, city, fullAddress, isDefault);
 
-        // 5. Gọi API
         callAddAddressApi(newAddress);
     }
 
-    /**
-     * Kiểm tra dữ liệu đầu vào.
-     */
+
     private boolean validateInput(String name, String street, String ward, String district, String city) {
         if (name.isEmpty()) {
             binding.edtName.setError("Vui lòng nhập tên người nhận");
@@ -107,7 +94,6 @@ public class AddAddressActivity extends AppCompatActivity {
                 case SUCCESS:
                     progressDialog.dismiss();
                     Toast.makeText(this, "Thêm địa chỉ thành công!", Toast.LENGTH_SHORT).show();
-                    // Đóng Activity và quay lại màn hình trước đó
                     finish();
                     break;
                 case ERROR:
@@ -115,7 +101,6 @@ public class AddAddressActivity extends AppCompatActivity {
                     Toast.makeText(this, "Lỗi: " + result.message, Toast.LENGTH_LONG).show();
                     break;
                 case LOADING:
-                    // Đang tải
                     break;
             }
         });

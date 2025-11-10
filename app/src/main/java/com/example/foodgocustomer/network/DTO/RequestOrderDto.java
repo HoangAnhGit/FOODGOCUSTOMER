@@ -15,7 +15,6 @@ public class RequestOrderDto {
         this.items = items;
     }
 
-    // Getters
     public int getRestaurantId() { return restaurantId; }
     public List<RequestOrderItemDto> getItems() { return items; }
 }

@@ -45,7 +45,6 @@ public class RestaurantHomeAdapter extends RecyclerView.Adapter<RestaurantHomeAd
 
     @Override
     public int getItemCount() {
-        // Trả về số lượng item trong list
         return restaurantList != null ? restaurantList.size() : 0;
     }
 
@@ -56,7 +55,6 @@ public class RestaurantHomeAdapter extends RecyclerView.Adapter<RestaurantHomeAd
     }
 
     public static class RestaurantViewHolder extends RecyclerView.ViewHolder {
-        // Biến binding này giữ tham chiếu đến tất cả View có ID trong file XML
         private final ItemRestaurantBinding binding;
 
         public RestaurantViewHolder(@NonNull ItemRestaurantBinding binding) {
@@ -65,7 +63,6 @@ public class RestaurantHomeAdapter extends RecyclerView.Adapter<RestaurantHomeAd
         }
 
         public void bind(ItemRestaurantDto restaurant, OnRestaurantClickListener listener) {
-            // Gán tên nhà hàng
             binding.tvRestaurantName.setText(restaurant.getName());
 
             binding.tvRating.setText(String.format(Locale.US, "%.1f (%d)",
@@ -74,7 +71,6 @@ public class RestaurantHomeAdapter extends RecyclerView.Adapter<RestaurantHomeAd
 
             binding.tvCompletedOrders.setText(String.valueOf(restaurant.getCompletedOrderCount()));
 
-            // Định dạng text "0.7km"
             binding.tvDistance.setText(String.format(Locale.US, "%.1fkm",
                     restaurant.getDistanceInKm()));
 

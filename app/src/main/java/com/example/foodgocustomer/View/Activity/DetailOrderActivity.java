@@ -32,7 +32,6 @@ public class DetailOrderActivity extends AppCompatActivity {
         binding = ActivityDetailOrderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // 1. Lấy OrderID từ Intent (được gửi từ HistoryOrderFragment)
         orderId = getIntent().getIntExtra("ORDER_ID", -1);
         if (orderId == -1) {
             Toast.makeText(this, "Lỗi: Không tìm thấy ID đơn hàng", Toast.LENGTH_SHORT).show();
@@ -40,16 +39,12 @@ public class DetailOrderActivity extends AppCompatActivity {
             return;
         }
 
-        // 2. Khởi tạo ViewModel
         viewModel = new ViewModelProvider(this).get(OrderDetailViewModel.class);
 
-        // 3. Cài đặt RecyclerView cho các món ăn
         setupRecyclerView();
 
-        // 4. Cài đặt nút Back
         binding.btnBack.setOnClickListener(v -> finish());
 
-        // 5. Tải dữ liệu và lắng nghe
         loadAndObserveData();
     }
 
@@ -60,19 +55,13 @@ public class DetailOrderActivity extends AppCompatActivity {
     }
 
     private void loadAndObserveData() {
-        // (Tùy chọn: Hiển thị ProgressBar)
-        // binding.progressBar.setVisibility(View.VISIBLE);
 
         viewModel.fetchOrderDetail(orderId).observe(this, result -> {
             if (result == null) return;
 
-            // (Tùy chọn: Ẩn ProgressBar)
-            // binding.progressBar.setVisibility(View.GONE);
 
             switch (result.status) {
                 case LOADING:
-                    // Đã xử lý ở trên
-                    break;
                 case SUCCESS:
                     if (result.data != null) {
                         bindDataToView(result.data);
@@ -82,14 +71,11 @@ public class DetailOrderActivity extends AppCompatActivity {
                     Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show();
                     break;
             }
-            // Gỡ observer (nếu bạn muốn tuân theo pattern của HistoryOrderFragment)
             viewModel.fetchOrderDetail(orderId).removeObservers(this);
         });
     }
 
-    /**
-     * Hàm chính: Gán dữ liệu (DTO) vào các View (XML)
-     */
+
     private void bindDataToView(ResponseOrderDetailDto data) {
         // Trạng thái đơn hàng
         binding.tvTimeEstimate.setText(data.getEstimatedDeliveryTime());
@@ -113,7 +99,6 @@ public class DetailOrderActivity extends AppCompatActivity {
             binding.tvShipperInfo.setVisibility(View.GONE);
         }
 
-        // Thông tin địa chỉ
         AddressInfoDto address = data.getAddressInfo();
         binding.tvFromStore.setText(address.getRestaurantName());
         binding.tvFromAddress.setText(address.getRestaurantAddress());
@@ -121,21 +106,14 @@ public class DetailOrderActivity extends AppCompatActivity {
         String userInfo = address.getCustomerName() + " - " + address.getCustomerPhone();
         binding.tvUsername.setText(userInfo);
 
-        // Tóm tắt đơn hàng (Bill)
         OrderSummaryDto summary = data.getSummary();
 
-        // Cập nhật danh sách món ăn
         itemAdapter.updateData(summary.getItems());
 
-        // Cập nhật chi phí
-        // TODO: Bạn CẦN THÊM ID cho các TextView giá trị trong XML
         binding.tvTotal.setText(priceFormat.format(summary.getSubtotal()));
         binding.tvGrandTotal.setText(priceFormat.format(summary.getGrandTotal()));
         binding.tvPaymentStatus.setText(summary.getPaymentStatusText().toUpperCase());
 
-        // (Ví dụ: Nếu bạn thêm ID "tv_shipping_fee_value")
-        // binding.tvShippingFeeValue.setText(priceFormat.format(summary.getShippingFee()));
-        // binding.tvServiceFeeValue.setText(priceFormat.format(summary.getServiceFee()));
-        // binding.tvDiscountValue.setText("-" + priceFormat.format(summary.getDiscountAmount()));
+
     }
 }

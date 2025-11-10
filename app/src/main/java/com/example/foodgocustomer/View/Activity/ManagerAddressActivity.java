@@ -36,7 +36,6 @@ public class ManagerAddressActivity extends AppCompatActivity implements Address
 
         setupClickListeners();
 
-        // 4. Quan sát (Observe) dữ liệu từ ViewModel
         observeAddresses();
     }
 
