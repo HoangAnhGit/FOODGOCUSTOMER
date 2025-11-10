@@ -1,34 +1,36 @@
 package com.example.foodgocustomer.network.DTO;
 
-import java.math.BigDecimal;
+import com.google.gson.annotations.SerializedName;
 
 public class DishResponse {
+
+    @SerializedName("dishId")
     private int dishId;
+
+    @SerializedName("dishName")
     private String dishName;
+
+    @SerializedName("imageUrl")
     private String imageUrl;
-    private BigDecimal price;
+
+    @SerializedName("price")
+    private double price;
+
+    // --- THÊM CÁC TRƯỜNG TỪ API C# ---
+    @SerializedName("averageRating")
     private double averageRating;
+
+    @SerializedName("ratingCount")
     private int ratingCount;
+
+    @SerializedName("totalSold")
     private int totalSold;
 
     public int getDishId() { return dishId; }
-    public void setDishId(int dishId) { this.dishId = dishId; }
-
     public String getDishName() { return dishName; }
-    public void setDishName(String dishName) { this.dishName = dishName; }
-
     public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
-
-    public BigDecimal getPrice() { return price; }
-    public void setPrice(BigDecimal price) { this.price = price; }
-
+    public double getPrice() { return price; }
     public double getAverageRating() { return averageRating; }
-    public void setAverageRating(double averageRating) { this.averageRating = averageRating; }
-
     public int getRatingCount() { return ratingCount; }
-    public void setRatingCount(int ratingCount) { this.ratingCount = ratingCount; }
-
     public int getTotalSold() { return totalSold; }
-    public void setTotalSold(int totalSold) { this.totalSold = totalSold; }
 }

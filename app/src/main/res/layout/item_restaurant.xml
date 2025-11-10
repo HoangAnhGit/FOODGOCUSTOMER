@@ -8,14 +8,12 @@
     android:layout_margin="8dp"
     android:elevation="2dp">
 
-    <!-- Card chứa ảnh và thông tin -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp">
 
-        <!-- Ảnh món ăn -->
         <ImageView
             android:id="@+id/img_restaurant"
             android:layout_width="70dp"
@@ -23,7 +21,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/avartar" />
 
-        <!-- Thông tin bên phải -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -31,7 +28,6 @@
             android:orientation="vertical"
             android:layout_marginStart="8dp">
 
-            <!-- Tên quán -->
             <TextView
                 android:id="@+id/tvRestaurantName"
                 android:layout_width="wrap_content"
@@ -41,7 +37,6 @@
                 android:textSize="14sp"
                 android:textColor="#000000" />
 
-            <!-- Hàng chứa rating, đơn hàng, khoảng cách -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,6 +49,7 @@
                     android:src="@drawable/star" />
 
                 <TextView
+                    android:id="@+id/tvRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5(15)"
@@ -68,6 +64,7 @@
                     android:layout_marginStart="8dp" />
 
                 <TextView
+                    android:id="@+id/tvCompletedOrders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="200"
@@ -79,28 +76,20 @@
                     android:layout_width="14dp"
                     android:layout_height="14dp"
                     android:src="@drawable/location"
-                    android:layout_marginStart="8dp" />
+                    android:layout_marginStart="8dp"
+                    android:visibility="gone"/>
 
                 <TextView
+                    android:id="@+id/tvDistance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.7km"
                     android:textSize="12sp"
                     android:layout_marginStart="2dp"
-                    android:textColor="#333333" />
+                    android:textColor="#333333"
+                    android:visibility="gone"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <!-- Dòng "Xem thêm" -->
-    <TextView
-        android:id="@+id/tvMore"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Xem thêm 5 quán  >"
-        android:textColor="#444444"
-        android:textSize="12sp"
-        android:layout_marginTop="6dp" />
 
 </LinearLayout>

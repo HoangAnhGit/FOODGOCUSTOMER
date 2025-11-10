@@ -1,5 +1,6 @@
 package com.example.foodgocustomer.Repository;
 
+import android.app.Application; // <-- Quan trọng
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,54 +16,55 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DishRepository {
-    private final DishApi dishApi;
 
-    public DishRepository(){ dishApi = ApiClient.getClient().create(DishApi.class);}
+    private final DishApi apiService;
 
-    public LiveData<Result<PagedResponse<DishResponse>>> getAllFood(){
-        MutableLiveData<Result<PagedResponse<DishResponse>>> getAllFood = new MutableLiveData<>();
-        getAllFood.setValue(Result.loading());
-
-        dishApi.getAllFoods(1,10).enqueue(new Callback<PagedResponse<DishResponse>>() {
-            @Override
-            public void onResponse(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Response<PagedResponse<DishResponse>> response) {
-                if (response.isSuccessful() && response.body()!=null){
-                    getAllFood.setValue(Result.success(response.body()));
-                }
-                else {
-                    getAllFood.setValue(Result.error("Load data error"));
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Throwable throwable) {
-                    getAllFood.setValue(Result.error("Lỗi : " + throwable.getMessage()));
-            }
-        });
-        return getAllFood;
+    public DishRepository(Application application) {
+        apiService = ApiClient.getClientAuth(application).create(DishApi.class);
     }
 
-    public  LiveData<Result<PagedResponse<DishResponse>>> getDishesByRestaurant(int restaurantId){
-        MutableLiveData<Result<PagedResponse<DishResponse>>> getDishesByRestaurant = new MutableLiveData<>();
-        getDishesByRestaurant.setValue(Result.loading());
+    public LiveData<Result<PagedResponse<DishResponse>>> getAllFood(int pageNumber, int pageSize) {
+        MutableLiveData<Result<PagedResponse<DishResponse>>> data = new MutableLiveData<>();
+        data.setValue(Result.loading());
 
-        dishApi.getDishesByRestaurant(restaurantId, 1, 10).enqueue(new Callback<PagedResponse<DishResponse>>() {
+        apiService.getAllDishes(pageNumber, pageSize).enqueue(new Callback<PagedResponse<DishResponse>>() {
             @Override
             public void onResponse(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Response<PagedResponse<DishResponse>> response) {
-                if (response.isSuccessful() && response.body()!=null){
-                    getDishesByRestaurant.setValue(Result.success(response.body()));
-                }
-                else{
-                    getDishesByRestaurant.setValue(Result.error("Load data error"));
+                if (response.isSuccessful() && response.body() != null) {
+                    data.setValue(Result.success(response.body()));
+                } else {
+                    data.setValue(Result.error("Lỗi khi tải món ăn: " + response.code()));
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Throwable throwable) {
-                    getDishesByRestaurant.setValue(Result.error("Lỗi : "+ throwable.getMessage()));
+            public void onFailure(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Throwable t) {
+                data.setValue(Result.error("Lỗi mạng (Dish): " + t.getMessage()));
             }
         });
 
-        return getDishesByRestaurant;
+        return data;
+    }
+    public LiveData<Result<PagedResponse<DishResponse>>> getDishesByRestaurant(int restaurantId, int pageNumber, int pageSize) {
+        MutableLiveData<Result<PagedResponse<DishResponse>>> data = new MutableLiveData<>();
+        data.setValue(Result.loading());
+
+        apiService.getDishesByRestaurant(restaurantId, pageNumber, pageSize).enqueue(new Callback<PagedResponse<DishResponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Response<PagedResponse<DishResponse>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    data.setValue(Result.success(response.body()));
+                } else {
+                    data.setValue(Result.error("Lỗi tải món ăn (Nhà hàng): " + response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<PagedResponse<DishResponse>> call, @NonNull Throwable t) {
+                data.setValue(Result.error("Lỗi mạng (Dish by Rest): " + t.getMessage()));
+            }
+        });
+
+        return data;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.foodgocustomer.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodgocustomer.View.Activity.DetailOrderActivity;
 import com.example.foodgocustomer.View.Adapter.OrderHistoryAdapter;
 import com.example.foodgocustomer.ViewModel.ProfileViewModel;
 import com.example.foodgocustomer.databinding.FragmentArrivingBinding;
@@ -154,7 +156,9 @@ public class ArrivingFragment extends Fragment implements OrderHistoryAdapter.On
     @Override
     public void onItemClick(ItemOrderHistoryDto order) {
         Toast.makeText(getContext(), "Xem chi tiết đơn: " + order.getOrderId(), Toast.LENGTH_SHORT).show();
-        // TODO: Mở màn hình Chi tiết/Theo dõi Đơn hàng
+        Intent intent = new Intent(getActivity(), DetailOrderActivity.class);
+        intent.putExtra("ORDER_ID", order.getOrderId()); // (Giả sử ItemOrderHistoryDto có getOrderId())
+        startActivity(intent);
     }
 
     @Override

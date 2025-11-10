@@ -16,6 +16,9 @@
         android:theme="@style/Theme.FOODGOCUSTOMER"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".View.Activity.CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.Activity.AddAddressActivity"
             android:exported="false" />
         <activity

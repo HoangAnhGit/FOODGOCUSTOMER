@@ -88,6 +88,7 @@
                         android:src="@drawable/star" />
 
                     <TextView
+                        android:id="@+id/tvRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5.0 (15)"
@@ -102,6 +103,7 @@
                         android:layout_marginStart="12dp" />
 
                     <TextView
+                        android:id="@+id/tvSold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="200+ món bán"
@@ -110,12 +112,14 @@
                         android:layout_marginStart="4dp" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:src="@drawable/location"
                         android:layout_marginStart="12dp" />
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0.7 km"
@@ -156,7 +160,7 @@
         android:paddingHorizontal="16dp"
         android:background="@android:color/white"
         android:elevation="8dp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imgCart"

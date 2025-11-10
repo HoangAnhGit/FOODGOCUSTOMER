@@ -55,8 +55,6 @@ public class LoginActivity extends AppCompatActivity {
 
         observeLogin();
 
-//        viewModel.getLoading().observe(this, isLoading ->
-//                binding.includeLoading.getRoot().setVisibility(isLoading ? View.VISIBLE : View.GONE));
     }
 
 

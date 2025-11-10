@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static Retrofit retrofit = null;
-    private static final String BASE_URL = "http://192.168.1.104:5179/";
+    private static final String BASE_URL = "http://192.168.0.103:5179/";
 
     public static Retrofit getClient() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -46,7 +46,7 @@ public class ApiClient {
                 .addInterceptor(logging)
                 .addInterceptor(new AuthInterceptor(token))
                 .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(3000, TimeUnit.SECONDS)
                 .build();
 
         return new Retrofit.Builder()

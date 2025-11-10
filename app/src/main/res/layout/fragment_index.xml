@@ -140,7 +140,8 @@
             android:text="@string/list_food"
             android:textColor="@color/black"
             android:textSize="17sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_category_food"
@@ -148,7 +149,8 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:layout_marginTop="8dp"
-            android:nestedScrollingEnabled="false" />
+            android:nestedScrollingEnabled="false"
+            android:visibility="gone"/>
 
         <!-- Gợi ý quán -->
         <TextView

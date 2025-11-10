@@ -1,5 +1,6 @@
 package com.example.foodgocustomer.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodgocustomer.View.Activity.DetailOrderActivity;
 import com.example.foodgocustomer.View.Adapter.OrderHistoryAdapter;
 import com.example.foodgocustomer.ViewModel.ProfileViewModel;
-import com.example.foodgocustomer.databinding.FragmentDraftBinding; // <-- Sử dụng DraftBinding
+import com.example.foodgocustomer.databinding.FragmentDraftBinding;
 import com.example.foodgocustomer.network.DTO.ItemOrderHistoryDto;
 
 import java.util.ArrayList;
@@ -23,10 +25,10 @@ import java.util.List;
 
 public class DraftFragment extends Fragment implements OrderHistoryAdapter.OnItemClickListener {
 
-    // === TÊN TRẠNG THÁI CẦN LỌC ===
-    private static final String STATUS_FILTER = "DRAFT"; // <-- Lọc các đơn nháp
 
-    private FragmentDraftBinding binding; // <-- Sử dụng DraftBinding
+    private static final String STATUS_FILTER = "CANCELLED";
+
+    private FragmentDraftBinding binding;
     private ProfileViewModel profileViewModel;
     private OrderHistoryAdapter orderAdapter;
     private List<ItemOrderHistoryDto> orderList = new ArrayList<>();
@@ -48,36 +50,28 @@ public class DraftFragment extends Fragment implements OrderHistoryAdapter.OnIte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 1. Khởi tạo ViewModel
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
 
-        // 2. Cài đặt RecyclerView
         setupRecyclerView();
 
-        // 3. Tải trang đầu tiên với trạng thái đã lọc
         loadDraftOrders(currentPage);
 
-        // 4. Cài đặt sự kiện cuộn
+
         setupScrollListener();
     }
 
     private void setupRecyclerView() {
         orderAdapter = new OrderHistoryAdapter(orderList, this);
-        // Giả sử RecyclerView trong layout của bạn có id là rcvDraft
         binding.rcvDraft.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rcvDraft.setAdapter(orderAdapter);
     }
 
-    /**
-     * Hàm gọi API để tải các đơn hàng nháp
-     */
     private void loadDraftOrders(int page) {
         if (isLoading) return;
         isLoading = true;
-        // Giả sử bạn có ProgressBar tên là progressBar
+
         binding.progressBar.setVisibility(View.VISIBLE);
 
-        // Gọi ViewModel với trạng thái "DRAFT"
         profileViewModel.getOrderHistory(page, PAGE_SIZE, STATUS_FILTER).observe(getViewLifecycleOwner(), result -> {
             if (result == null) {
                 isLoading = false;
@@ -151,7 +145,11 @@ public class DraftFragment extends Fragment implements OrderHistoryAdapter.OnIte
     @Override
     public void onItemClick(ItemOrderHistoryDto order) {
         Toast.makeText(getContext(), "Tiếp tục đơn hàng nháp: " + order.getOrderId(), Toast.LENGTH_SHORT).show();
-        // TODO: Mở màn hình Giỏ hàng/Chi tiết để tiếp tục đơn hàng này
+        Intent intent = new Intent(getActivity(), DetailOrderActivity.class);
+        // Truyền ID của đơn hàng sang Activity mới
+        intent.putExtra("ORDER_ID", order.getOrderId()); // (Giả sử ItemOrderHistoryDto có getOrderId())
+        startActivity(intent);
+
     }
 
     @Override
